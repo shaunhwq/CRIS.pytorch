@@ -1,5 +1,56 @@
 # CRIS: CLIP-Driven Referring Image Segmentation (CVPR2022)
 
+## Demo
+
+### <u> Installation (cuda 10.2) </u>
+```
+conda create -n cris_venv python=3.8
+conda activate cris_venv
+conda install pytorch==1.10.0 torchvision==0.11.0 torchaudio==0.10.0 cudatoolkit=10.2 -c pytorch
+pip3 install -r requirements.txt
+```
+
+### <u> Prepare the dataset </u>
+Follow the instructions in [prepare_datasets.md](tools/prepare_datasets.md)
+
+Further modify the paths in the configurations to point to the correct folder if not there will be errors.
+
+### <u> Download Pretrained weights </u>
+Download the weights into pretrained folder. Appears that author did not provide pretrained weights.
+References for weights
+
+[CLIP Weights](https://github.com/openai/CLIP/blob/main/clip/clip.py), [CRIS Weights](https://github.com/DerrickWang005/CRIS.pytorch/issues/3)
+```
+mkdir pretrain
+cd pretrain
+wget https://openaipublic.azureedge.net/clip/models/afeb0e10f9e5a86da6080e35cf09123aca3b358a0c3e3b6c78a7b63bc04b6762/RN50.pt
+```
+
+### <u> Running the demo </u>
+```
+python3 demo_cris50.py -h
+usage: demo_cris50.py [-h] -ii INPUT_IMAGE -ip INPUT_PROMPT -o OUTPUT_DIR [-d DEVICE] [-w WEIGHTS] [-cw CLIP_WEIGHTS] [--word_length WORD_LENGTH]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -ii INPUT_IMAGE, --input_image INPUT_IMAGE
+                        Path to input image containing images
+  -ip INPUT_PROMPT, --input_prompt INPUT_PROMPT
+                        Prompt accompanying the image
+  -o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        Path to output folder
+  -d DEVICE, --device DEVICE
+                        Device to use e.g. 'cuda:0', 'cuda:1', 'cpu'
+  -w WEIGHTS, --weights WEIGHTS
+                        Path to CRIS pretrained weights
+  -cw CLIP_WEIGHTS, --clip_weights CLIP_WEIGHTS
+                        Path to CLIP pretrained weights
+  --word_length WORD_LENGTH
+                        Max length of word
+```
+---
+## Author's Repo
+
 Created by Zhaoqing Wang*, Yu Lu*, Qiang Li*, Xunqiang Tao, Yandong Guo, Mingming Gong and Tongliang Liu
 
 This is an official PyTorch implementation of the [CRIS](https://arxiv.org/pdf/2111.15174)

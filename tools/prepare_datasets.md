@@ -13,7 +13,8 @@ wget http://images.cocodataset.org/zips/train2014.zip
 
 # unzip
 unzip train2014.zip -d images/ && rm train2014.zip
-
+cd ..
+mv datasets/images images
 ```
 
 ### 2. Ref-COCO

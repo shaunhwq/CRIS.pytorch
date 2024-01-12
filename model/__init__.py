@@ -1,4 +1,4 @@
-from .segmenter import CRIS
+from .segmenter import CRIS, CRISModified
 from loguru import logger
 
 # def build_segmenter(args):
